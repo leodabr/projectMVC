@@ -1,0 +1,19 @@
+{
+    "name": "aluno/project-mvc2",
+    "autoload": {
+        "psr-4": {
+            "Aluno\\ProjectMvc2\\": "src/"
+        },
+        "files": [
+            "pdo.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "eliel"
+        }
+    ],
+    "require": {
+        "ramsey/uuid": "^4.9"
+    }
+}
