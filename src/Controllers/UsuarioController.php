@@ -16,6 +16,29 @@ class UsuarioController implements Controller
     $this->pdo = conn();
   }
 
+  public function tabuada()
+  {
+    
+    for($j = 1; $j <= 10; $j++){
+
+      for($i = 0; $i <= 10 ; $i++){
+        echo "$j : $i = ". ($i * $j) . "<br>";
+      }
+      echo "<hr>";
+    }
+  }
+  public function tabuada() {
+  for ($j = 1; $j <= 10; $j++) {
+    for ($i = 1; $i <= 10; $i++) { // Começa em 1 para evitar divisão por zero
+      $resto = $j % $i;
+      $sobra = ($resto % 2 == 0) ? "é par" : "é impar";
+
+      echo "$j % $i = $resto → $sobra<br>";
+    }
+    echo "<hr>";
+  }
+}
+
   public function formCreate()
   {
 

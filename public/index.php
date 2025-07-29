@@ -11,23 +11,29 @@ require_once __DIR__ . '/../vendor/autoload.php';
 $rota = "$metodo|$recurso";
 
 $rotas = [
-  "GET|/" =>'foi, finalmente zorra',
-  "GET|/usuario/create" => [UsuarioController::class, 'formcreate'],
+  "GET|/tabuada" =>[UsuarioController::class, 'tabuada'],
+  "GET|/resto" =>[UsuarioController::class, 'restoP'],
+  "GET|/usuario/create" => [UsuarioController::class, 'formCreate'],
   "POST|/usuario/create" => [UsuarioController::class, 'create'],
   // "GET|/usuario/all" => 20,
   "GET|/usuario/all" => [UsuarioController::class, ''],
   "GET|/usuario/edit" => [UsuarioController::class, 'editar'],
   'POST|/usuario/edit' => [UsuarioController::class, 'editar'],
   'POST|/usuario/delete' => [UsuarioController::class, ''],
+
 ];
 // var_dump($rotas[$rota]);
 // var_dump($rotas["GET|/usuario/all"]);
 
 $resultado = $rotas[$rota];
+$controlador = new $resultado[0]();
+$funcao = $resultado[1];
+// $controlador->formCreate(); exit;
+$controlador->$funcao(); exit;
+
 
 echo "<pre>";
-var_dump($resultado);
-echo "</pre>";
+var_dump($funcao);
 exit;
 
 $controlador = new $rotas[$rota][0];
