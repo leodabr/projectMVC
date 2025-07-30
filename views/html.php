@@ -36,7 +36,7 @@
                     <td><?= $usuario['id'] ?></td>
                     <td><?= $usuario['nome'] ?></td>
                     <td><?= $usuario['email'] ?></td>
-                    
+                    <td><a href="/usuario/edit?id=<?= $usuario['id'] ?>">Editar</a></td>                    
                 </tr>
             <?php endforeach; ?>
         </table>

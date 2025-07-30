@@ -27,13 +27,24 @@ class UsuarioController implements Controller
       echo "<hr>";
     }
   }
-  public function tabuada() {
+
+  public function mult(){
+    for($a = 0; $a <= 10; $a++){
+      for($b = 0; $b <= 10; $b++){
+        echo "$a x $b= " . ($a * $b) . "<br>";
+    }
+    echo "<hr>";
+  }
+}
+
+
+  public function resto() {
   for ($j = 1; $j <= 10; $j++) {
-    for ($i = 1; $i <= 10; $i++) { // Começa em 1 para evitar divisão por zero
+    for ($i = 1; $i <= 10; $i++) { 
       $resto = $j % $i;
       $sobra = ($resto % 2 == 0) ? "é par" : "é impar";
 
-      echo "$j % $i = $resto → $sobra<br>";
+      echo "$j / $i = $resto → $sobra<br>";
     }
     echo "<hr>";
   }
@@ -71,18 +82,20 @@ class UsuarioController implements Controller
 public function formeditar()
   {
 
-    $sql = "SELECT id, nome, email FROM usuarios";
+    $sql = "SELECT id, nome, email FROM usuarios WHERE id = ?";
     $stmt = $this->pdo->prepare($sql);
-    $stmt->execute();
+    $stmt->execute([$_GET['id']]);
 
-    $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $usuarios = $stmt->fetch(PDO::FETCH_ASSOC);
 
     include_once __DIR__ . '/../../views/edit.php';
     
   }
 
-public function editar($id=1)
+public function editar()
 {
+    $id = $_POST['id'];
+    // var_dump($id); exit;
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $senha = $_POST['senha'];
@@ -94,7 +107,7 @@ public function editar($id=1)
 
     $stmt->execute([$nome, $email, $senha, $id]);
 
-    header("Location: /usuario/edit/$id");
+    header("Location: /usuario/create");
 }
 
 }

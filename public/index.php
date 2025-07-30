@@ -12,34 +12,42 @@ $rota = "$metodo|$recurso";
 
 $rotas = [
   "GET|/tabuada" =>[UsuarioController::class, 'tabuada'],
-  "GET|/resto" =>[UsuarioController::class, 'restoP'],
+  "GET|/resto" =>[UsuarioController::class, 'resto'],
+  "GET|/mult" =>[UsuarioController::class, 'mult'],
   "GET|/usuario/create" => [UsuarioController::class, 'formCreate'],
   "POST|/usuario/create" => [UsuarioController::class, 'create'],
   // "GET|/usuario/all" => 20,
   "GET|/usuario/all" => [UsuarioController::class, ''],
-  "GET|/usuario/edit" => [UsuarioController::class, 'editar'],
+  "GET|/usuario/edit" => [UsuarioController::class, 'formEditar'],
   'POST|/usuario/edit' => [UsuarioController::class, 'editar'],
   'POST|/usuario/delete' => [UsuarioController::class, ''],
 
 ];
-// var_dump($rotas[$rota]);
-// var_dump($rotas["GET|/usuario/all"]);
 
-$resultado = $rotas[$rota];
-$controlador = new $resultado[0]();
-$funcao = $resultado[1];
-// $controlador->formCreate(); exit;
-$controlador->$funcao(); exit;
+if(array_key_exists($rota, $rotas)){
+
+  $controlador = new $rotas[$rota][0];
+  $funcao = $rotas[$rota][1];
+  
+  $controlador->$funcao();
+}else{
+  http_response_code(404);
+}
+
+// $resultado = $rotas[$rota];
+// $controlador = new $resultado[0]();
+// $funcao = $resultado[1];
+// $controlador->$funcao(); 
 
 
-echo "<pre>";
-var_dump($funcao);
-exit;
+// // echo "<pre>";
+// // var_dump($funcao);
+// // exit;
 
-$controlador = new $rotas[$rota][0];
-$funcao = $rotas[$rota][1];
+// // $controlador = new $rotas[$rota][0];
+// // $funcao = $rotas[$rota][1];
 
-$controlador->$funcao();
+// // $controlador->$funcao();
 
 
 
