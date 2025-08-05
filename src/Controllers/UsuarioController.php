@@ -2,6 +2,7 @@
 
 namespace Aluno\ProjectMvc2\Controllers;
 
+use Aluno\ProjectMvc2\models\Excluir;
 use PDO;
 use Ramsey\Uuid\Uuid;
 
@@ -109,5 +110,75 @@ public function editar()
 
     header("Location: /usuario/create");
 }
+public function excluir()
+{
+  $excluir = new Excluir();
+  $excluir-> deleteUsuario($_GET['id']);
+    header("Location: /usuario/create");
+    exit;
+}
+public function loginForm()
+{
+    include_once __DIR__ . '/../../views/loginForm.php';
+}
+
+public function login()
+{
+    $email = $_POST['email'] ?? '';
+    $senha = $_POST['senha'] ?? '';
+
+    if (empty($email) || empty($senha)) {
+        header("Location: /usuario/login?erro=faltando_dados");
+        exit;
+    }
+
+    $sql = "SELECT id, nome, email, senha FROM usuarios WHERE email = ?";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute([$email]);
+    $usuario = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+    if ($usuario && password_verify($senha, $usuario['senha'])) {
+        session_start();
+        $_SESSION['usuario_id'] = $usuario['id'];
+        $_SESSION['usuario_nome'] = $usuario['nome'];
+
+        header("Location: /usuario/create"); // redireciona após login
+        exit;
+    } else {
+        header("Location: /usuario/login?erro=credenciais_invalidas");
+        exit;
+    }
+}
+
+public function addForm()
+  {
+
+    $sql = "SELECT id, nome, email FROM usuarios";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute();
+
+    $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    include_once __DIR__ . '/../../views/add.php';
+    
+  }
+
+  public function add()
+  {
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
+
+    $sql = "INSERT INTO usuarios (id, nome, email, senha) VALUES (?, ?, ?, ?)";
+    $stmt = $this->pdo->prepare($sql);
+
+    $senha = password_hash($senha,PASSWORD_ARGON2ID);
+
+    $stmt->execute([Uuid::uuid4()->toString(), $nome, $email, $senha]);
+
+    header("location: /usuario/create");
+
+  }
+
 
 }

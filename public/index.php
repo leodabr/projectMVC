@@ -16,11 +16,17 @@ $rotas = [
   "GET|/mult" =>[UsuarioController::class, 'mult'],
   "GET|/usuario/create" => [UsuarioController::class, 'formCreate'],
   "POST|/usuario/create" => [UsuarioController::class, 'create'],
-  // "GET|/usuario/all" => 20,
+
+    "GET|/usuario/add" => [UsuarioController::class, 'addForm'],
+    "POST|/usuario/add" => [UsuarioController::class, 'add'],
+  
+  "GET|/usuario/login" => [UsuarioController::class, 'loginForm'],
+  "POST|/usuario/login" => [UsuarioController::class, 'login'],
+
   "GET|/usuario/all" => [UsuarioController::class, ''],
   "GET|/usuario/edit" => [UsuarioController::class, 'formEditar'],
   'POST|/usuario/edit' => [UsuarioController::class, 'editar'],
-  'POST|/usuario/delete' => [UsuarioController::class, ''],
+  'GET|/usuario/delete' => [UsuarioController::class, 'excluir'],
 
 ];
 

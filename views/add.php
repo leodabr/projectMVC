@@ -6,31 +6,19 @@
 </head>
 <body>
 
-  <h1>Cadastro de Usuário</h1>
-  <form method="post" action="/waguinho1">
-    <label>Nome: <input type="text" name="nome" required></label><br><br>
-    <label>Email: <input type="email" name="email" required></label><br><br>
-    <label>Senha: <input type="password" name="senha" required></label><br><br>
-    <input type="submit" value="Enviar">
+  <body>
+
+  <h1>Cadastro de usuário</h1>
+  <form action="/usuario/add" method="post">
+    <input type="text" name="nome">
+    <input type="email" name="email">
+    <input type="password" name="senha">
+    <input type="submit" value="Adicionar">
   </form>
-
-  <hr>
-
-  <h1>Usuários Cadastrados</h1>
-  <table border="1" cellpadding="8">
-      <tr>
-          <th>ID</th>
-          <th>Nome</th>
-          <th>Email</th>
-      </tr>
-      <?php foreach ($usuarios as $usuario): ?>
-          <tr>
-              <td><?= htmlspecialchars($usuario['id']) ?></td>
-              <td><?= htmlspecialchars($usuario['nome']) ?></td>
-              <td><?= htmlspecialchars($usuario['email']) ?></td>
-          </tr>
-      <?php endforeach; ?>
-  </table>
-
+  <form action="/usuario/login" method="GET" style="margin-top: 10px;">
+  <button type="submit">Já tenho uma conta!</button>
+</form>
+  
 </body>
-</html>
+
+  

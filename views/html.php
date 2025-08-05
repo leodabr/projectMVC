@@ -1,7 +1,3 @@
-<p> ROTA HOME CASA ATUAL E OPERANTE </P>
-
-
-
 <body>
 
   <h1>Cadastro de usuário</h1>
@@ -9,7 +5,7 @@
     <input type="text" name="nome">
     <input type="email" name="email">
     <input type="password" name="senha">
-    <input type="submit" value="Enviar">
+    <input type="submit" value="Adicionar">
   </form>
   
 </body>
@@ -37,6 +33,7 @@
                     <td><?= $usuario['nome'] ?></td>
                     <td><?= $usuario['email'] ?></td>
                     <td><a href="/usuario/edit?id=<?= $usuario['id'] ?>">Editar</a></td>                    
+                    <td><a href="/usuario/delete?id=<?= $usuario['id'] ?>" onclick="return confirm('Tem certeza que deseja excluir este usuário?')">Excluir</a></td>
                 </tr>
             <?php endforeach; ?>
         </table>
