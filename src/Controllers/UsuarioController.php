@@ -119,7 +119,7 @@ public function excluir()
 }
 public function loginForm()
 {
-    include_once __DIR__ . '/../../views/loginForm.php';
+    view('loginForm');
 }
 
 public function login()
@@ -159,7 +159,7 @@ public function addForm()
 
     $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    include_once __DIR__ . '/../../views/add.php';
+    view ('add');
     
   }
 
@@ -179,6 +179,11 @@ public function addForm()
     header("location: /usuario/create");
 
   }
+
+    public function dashboard(){
+
+
+    }
 
 
 }

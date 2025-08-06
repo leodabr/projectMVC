@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 use Aluno\ProjectMvc2\Controllers\UsuarioController;
 
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -17,13 +19,14 @@ $rotas = [
   "GET|/usuario/create" => [UsuarioController::class, 'formCreate'],
   "POST|/usuario/create" => [UsuarioController::class, 'create'],
 
-    "GET|/usuario/add" => [UsuarioController::class, 'addForm'],
-    "POST|/usuario/add" => [UsuarioController::class, 'add'],
-  
+  "GET|/usuario/add" => [UsuarioController::class, 'addForm'],
+  "POST|/usuario/add" => [UsuarioController::class, 'add'],
+
   "GET|/usuario/login" => [UsuarioController::class, 'loginForm'],
   "POST|/usuario/login" => [UsuarioController::class, 'login'],
 
-  "GET|/usuario/all" => [UsuarioController::class, ''],
+  "GET|/usuario/all" => [UsuarioController::class, 'dashboard'],
+  "GET|/usuario/all" => [UsuarioController::class, 'dashboard'],
   "GET|/usuario/edit" => [UsuarioController::class, 'formEditar'],
   'POST|/usuario/edit' => [UsuarioController::class, 'editar'],
   'GET|/usuario/delete' => [UsuarioController::class, 'excluir'],

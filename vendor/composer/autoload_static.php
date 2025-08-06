@@ -9,6 +9,7 @@ class ComposerStaticInit9f0108facf92bac1cdf50a980b6c6fdd
     public static $files = array (
         'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
         'c3afcb9781d283fc9a80b6eeab1c295d' => __DIR__ . '/../..' . '/pdo.php',
+        'f32a564ede5d3f410e40c1a659cdc321' => __DIR__ . '/../..' . '/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (

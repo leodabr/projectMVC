@@ -5,7 +5,8 @@
             "Aluno\\ProjectMvc2\\": "src/"
         },
         "files": [
-            "pdo.php"
+            "pdo.php", 
+            "src/helpers.php"
         ]
     },
     "authors": [
